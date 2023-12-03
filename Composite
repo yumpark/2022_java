@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class JavaCar {
+    public static void main(String[] args) {
+        Handle handle = new Handle(40);  //핸들
+        Body body = new Body(100);  //바디
+        Muffler muffler = new Muffler(30);  //소음기
+        Car car = new Car();
+        car.addComponent(handle);  //자동차 핸들 추가
+        car.addComponent(body);  //자동차 바디 추가
+        car.addComponent(muffler);  //자동차 소음기 추가
+        int carPower = car.getPower();  //자동차 파워
+        System.out.println("Car Power: " + carPower + "W");  //자동차 파워 표시
+    }
+}
+
+abstract class CarDevice {  //자동차 부품 선언
+    public abstract int getPower();  //자동차 파워
+}
+abstract class CarDeviceComponents extends CarDevice {  //자동차 부품 안의 요소 선언
+    private final int power;
+
+    public CarDeviceComponents(int power) {
+        this.power = power;
+    }
+
+    public int getPower() {
+        return power;
+    }
+}
+class Handle extends CarDeviceComponents {  //요소 안의 핸들 선언
+    public Handle(int power) {  //핸들의 파워
+        super(power);
+    }
+}
+class Body extends CarDeviceComponents {  //요소 안의 바디 선언
+    public Body(int power) {  //바디의 파워
+        super(power);
+    }
+}
+class Muffler extends CarDeviceComponents {  //요소 안의 소음기 선언
+    public Muffler(int power) {  //소음기의 파워
+        super(power);
+    }
+}
+class Car extends CarDevice {  //자동차를 구성하는 기본적인 소자
+    private final List<CarDevice> components = new ArrayList<>();
+    public void addComponent(CarDevice component) {
+        components.add(component);
+    }
+    public void removeComponent(CarDevice component) {
+        components.remove(component);
+    }
+
+    public int getPower() {
+        int power = 0;  //파워 0으로 선언
+        for(CarDevice component : components)
+            power += component.getPower();  //요소들의 파워 더하기
+        return power;
+    }
+}
