@@ -1,0 +1,60 @@
+public class test {
+    public static void main(String[] args) {
+        Electricfan electricfan = new Electricfan(); //선풍기 전원
+        Command electricfanOnCommand = new ElectricfanOnCommand(electricfan);
+        Turn turn = new Turn(); // 선풍기 회전
+        Command turnStartCommand = new TurnStartCommand(turn);
+        Button button1 = new Button(electricfanOnCommand); //1번 버튼을 눌렀을때 선풍기 커짐
+        button1.pressed();
+        Button button2 = new Button(turnStartCommand); // 2번 선풍기를  켰을때 회전
+        button2.pressed();
+        button2.setCommand(electricfanOnCommand);
+        button2.pressed();
+    }
+}
+
+interface Command {
+    void execute();
+}
+class Button { //버튼 클래스
+    private Command command;
+    public Button(Command command) {
+        setCommand(command);
+    }
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+    public void pressed() {
+        command.execute();
+    }
+}
+
+class Electricfan { //선풍기 클래스
+    public void turnOn() {
+        System.out.println("Electricfan On"); //선풍기 on
+    }
+}
+class ElectricfanOnCommand implements Command {
+    private final Electricfan electricfan;
+    public ElectricfanOnCommand(Electricfan electricfan) {
+        this.electricfan = electricfan;
+    }
+    public void execute() {
+        electricfan.turnOn();
+    }
+}
+
+class Turn { //선풍기 회전 클래스
+    public void start() {
+        System.out.println("Turning"); // 회전
+    }
+}
+class TurnStartCommand implements Command {
+    private final Turn turn;
+    public TurnStartCommand(Turn turn) {
+        this.turn = turn;
+    }
+    public void execute() {
+        turn.start();
+    }
+}
