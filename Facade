@@ -1,0 +1,66 @@
+public class burger {
+    public static void main(String[] args) {
+        LotteriaFacade lotteria = new LotteriaFacade();  //롯데리아
+        lotteria.BulgogiBurger();  //롯데리아의 불고기버거
+        lotteria.CheeseBurger();  //롯데리아의 치즈버거
+    }
+}
+
+class Sauce {  //소스 선언
+    public void BurgerSauce() { System.out.println("소스"); }  //소스 출력
+}
+
+class Bread {  //빵 선언
+    public void BurgerBread() { System.out.println("빵"); }  //빵 출력
+}
+
+class Patty {  //패티 선언
+    public void BurgerPatty() { System.out.println("패티"); }  //패티 출력
+}
+
+class Cheese {  //치즈 선언
+    public void BurgerCheese() { System.out.println("치즈"); }  //치즈 출력
+}
+
+class Lettuce {  //상추 선언
+    public void BurgerLettuce() { System.out.println("상추"); }  //상추 출력
+}
+
+class Pickle {  //피클 선언
+    public void BurgerPickle() { System.out.println("피클"); }  //피클 출력
+}
+
+class LotteriaFacade {  //롯데리아 퍼사드~~
+    private final Sauce sauce;
+    private final Bread bread;
+    private final Patty patty;
+    private final Cheese cheese;
+    private final Lettuce lettuce;
+    private final Pickle pickle;
+
+    public LotteriaFacade() {
+        sauce = new Sauce();
+        bread = new Bread();
+        patty = new Patty();
+        cheese = new Cheese();
+        lettuce = new Lettuce();
+        pickle = new Pickle();
+    }
+
+    public void BulgogiBurger() {  //불고기버거 선언
+        System.out.println("--- 불고기버거 재료 ---");  //불고기버거 재료 입력&출력
+        sauce.BurgerSauce();
+        bread.BurgerBread();
+        patty.BurgerPatty();
+        lettuce.BurgerLettuce();
+    }
+
+    public void CheeseBurger() {  //치즈버거 선언
+        System.out.println("--- 치즈버거 재료 ---");  //치즈버거 재료 입력&출력
+        sauce.BurgerSauce();
+        bread.BurgerBread();
+        patty.BurgerPatty();
+        cheese.BurgerCheese();
+        pickle.BurgerPickle();
+    }
+}
