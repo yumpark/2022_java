@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class yoonmi {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("9 이하의 숫자를 입력하시오 : ");
+        int size = sc.nextInt();  //숫자 입력
+        int[][] A = new int[size][size];  //배열 선언
+
+        int num1 = 1;  //배열에 들어갈 첫번째 숫자
+        int num2 = size*size;  //배열에 들어갈 마지막 숫자
+        int b = 0;
+        while(num1 <= num2){  //마지막 숫자가 될 때까지 반복
+            //윗부분 할당
+            for(int j=b; j<size-b; j++){  //j는 가로, j=b~size전까지 반복, j증가
+                A[b][j] = num1++;  //반복할 때마다 출력 숫자 증가, 배열에 저장
+            }
+            //오른쪽 할당
+            int k = b+1;
+            for(int i=k; i<size-b; i++){  //i는 세로, i=k~size-b전까지 반복, i증가
+                A[i][size-b-1] = num1++;  //반복할 때마다 출력할 숫자 증가, 배열에 저장
+            }
+            //아래 할당
+            k = size-b-2;
+            for(int j=k; j>=b; j--){  //j=b~k까지 반복, j감소
+                A[size-b-1][j] = num1++;  //반복할 때마다 출력할 숫자 증가, 배열에 저장
+            }
+            //왼쪽 할당
+            k = size-b-2;
+            for(int i=k; i>b; i--){  //i=b~k까지 반복, i감소
+                A[i][b] = num1++;  //반복할 때마다 출력할 숫자 증가, 배열에 저장
+            }
+            b+=1; //b증가
+        }
+        print(size, A);
+    }
+    public static void print(int n, int[][] array){  //n=size, A=array
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                System.out.print(array[i][j] + " ");  //배열에 저장된 숫자 출력
+            }
+            System.out.println();  //엔터
+        }
+        System.out.println();
+
+    }
+}
