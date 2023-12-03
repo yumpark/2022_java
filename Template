@@ -1,0 +1,28 @@
+public class test2 {
+    public static void main(String[] args) {
+        LamenClass lamenclass = new RecipeClass();  
+        System.out.println("===라면 끓이는 순서===");
+        lamenclass.cook();
+    }
+}
+abstract class LamenClass {  //라면클래스
+    protected abstract void cooking1();  //요리
+    protected abstract void cooking2();
+    protected abstract void cooking3();
+    public void cook() {
+        cooking1();
+        cooking2();
+        cooking3();
+    }
+}
+class RecipeClass extends LamenClass {  //레시피
+    protected void cooking1() {
+        System.out.println("1. 물을 끓인다");
+    }
+    protected void cooking2() {
+        System.out.println("2. 면과 스프를 넣는다");
+    }
+    protected void cooking3() {
+        System.out.println("3. 추가 재료를 넣고 익을 때까지 끓인다");
+    }
+}
