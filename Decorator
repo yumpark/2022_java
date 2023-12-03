@@ -1,0 +1,66 @@
+public class test1 {
+    public static void main(String[] args) {
+        Coffee coffee = new Espresso();
+        coffee.brew(); //에스프레소
+        Coffee coffeeWithIce = new Ice(new Espresso());
+        coffeeWithIce.brew(); // 에스프레소에 얼음 추가
+        Coffee coffeeWithSyrup = new Syrup(new Espresso());
+        coffeeWithSyrup.brew(); // 에스프레소에 시럽 추가
+// 에스프레소에 얼음과 시럽 추가
+        Coffee coffeeWithIceAndSyrup =
+                new Syrup(
+                        new Ice(
+                                new Espresso()));
+        coffeeWithIceAndSyrup.brew();
+    }
+}
+
+abstract class Coffee {  //커피 클래스 선언
+    public abstract void brew();  //커피를 내리다
+}
+class Espresso extends Coffee {  //커피를 상속 받은 에스프레소
+    public void brew() {
+        System.out.println("에스프레소");  //출력
+    }
+}
+abstract class Coffeebeen extends Coffee {  //커피빈
+    private final Coffee Coffeepowder;  //커피파우더
+
+    public Coffeebeen(Coffee coffeepowder) {
+        this.Coffeepowder = coffeepowder;
+    }
+
+    public void brew() {
+        Coffeepowder.brew();
+    }
+}
+
+class Ice extends Coffeebeen {  //얼음
+    public Ice(Coffee coffeepowder) {
+        super(coffeepowder);
+    }
+
+    public void brew() {
+        super.brew();
+        icein();
+    }
+
+    private void icein() {  //얼음 추가
+        System.out.println("\t얼음 추가");
+    }
+}
+
+class Syrup extends Coffeebeen {  //시럽
+    public Syrup(Coffee coffeepowder) {
+        super(coffeepowder);
+    }
+
+    public void brew() {
+        super.brew();
+        syrupin();
+    }
+
+    private void syrupin() {  //시럽 추가
+        System.out.println("\t시럽 추가");
+    }
+}
