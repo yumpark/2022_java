@@ -1,0 +1,30 @@
+public class test2 {
+    public static void main(String[] args) {
+        System.out.println(true);
+    }
+}
+
+interface Noodle {}  //국수 객체 생성
+
+abstract class ThickNoodle implements Noodle {}  //국수 안의 굵은 면 생성
+abstract class ThinNoodle implements Noodle {}  //얇은 면 생성
+
+class Udon extends ThickNoodle {}  //굵은 면 안의 우동 생성
+class Kalguksu extends ThickNoodle {}  //칼국수 생성
+
+class Pasta extends ThinNoodle {}  //얇은 면 안의 파스타 생성
+class lamen extends ThinNoodle {}  //얇은 면 안의 라면 생성
+
+interface NoodleFactory {  //국수 팩토리 생성
+    ThickNoodle createThickNoodle();  //굵은 국수
+    ThinNoodle createThinNoodle();  //얇은 국수
+}
+class SeoulNoodleFectory implements NoodleFactory {  //국수 팩토리 안의 서울 국수 팩토리 생성
+    public ThickNoodle createThickNoodle() {return new Udon(); }  //굵은 면 중에 새 우동 생성
+    public ThinNoodle createThinNoodle() {return new Pasta(); }  //얇은 면 중에 새 파스타 생성
+}
+class BusanNoodleFactory implements NoodleFactory {  //국수 팩토리 안의 부산 국수 팩토리 생성
+    public ThickNoodle createThickNoodle() {return new Kalguksu();}  //굵은 면 중에 새 칼국수 생성
+    public ThinNoodle createThinNoodle() {return new lamen();}  //얇은 면 중에 새 라면 생성
+}
+
