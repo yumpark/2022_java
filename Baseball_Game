@@ -1,0 +1,82 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class yumyumi {
+    public static void main(String[] args) {
+
+        Random rd = new Random();
+        Scanner sc=new Scanner(System.in);
+
+        int first, second, third;  //랜덤값 생성을 위한 변수, 각각 첫번째 두번째 세번째
+        int user1, user2, user3;  //사용자가 입력할 세 자리 변수 구분
+        int a;  //사용자가 입력할 세 자리 변수
+        int strike;  //스트라이크
+        int ball;  //볼
+        int count=1;  //도전 횟수(1부터 시작)
+
+while(true){  //게임 반복
+
+    while(true){  //1~9사이의 랜덤값 생성
+        first=(int)(Math.random()*9)+1;
+        second=(int)(Math.random()*9)+1;
+        third=(int)(Math.random()*9)+1;
+        if(!(first==second||second==third||third==first)){
+            break;  //서로 중복되지 않는 랜덤값 생성시, while문 탈출
+        }
+    }
+
+
+    while(true){
+        System.out.println("3개의 숫자 선택: ");
+        a=sc.nextInt();  //3자리수 정수 입력
+
+        strike=0;  //스트라이크값 0으로 초기화
+        ball=0;  //볼값 0으로 초기화
+
+        user1=a/100;  //첫번째 자리는 백의 자리이므로 입력값/100
+        user2=(a%100)/10;  //두번째 자리는 십의 자리이므로 (입력값%100)/10
+        user3=a%10;  //세번째 자리는 일의 자리이므로 입력값%10
+
+        if (user1==first){  //첫번째 숫자가 사용자가 입력한 숫자와 위치가 같다면
+            strike++;  //스트라이크 1회 증가
+        }
+        else if(user1==second || user1==third){  //첫번째 숫자가 사용자가 입력한 숫자는 같으나 위치가 다르다면
+            ball++;  //볼 1회 증가
+        }
+        if (user2==second){  //두번째 숫자가 사용자가 입력한 숫자와 위치가 같다면
+            strike++;  //스트라이크 1회 증가
+        }
+        else if(user2==first || user2==third){  //두번째 숫자가 사용자가 입력한 숫자는 같으나 위치가 다르다면
+            ball++;  //볼 1회 증가
+        }
+        if (user3==third){  //세번째 숫자가 사용자가 입력한 숫자와 위치가 같다면
+            strike++;  //스트라이크 1회 증가
+        }
+        else if(user3==first || user3==second){  //세번째 숫자가 사용자가 입력한 숫자는 같으나 위치가 다르다면
+            ball++;  //볼 1회 증가
+        }
+        System.out.println(count+"번째 도전 결과: "+strike+"strike, "+ball+"ball");
+        count++;  //반복할 때마다 도전 횟수 증가
+        if(strike==3){  //스트라이크가 3이라면
+            System.out.println("End Game!");
+            break;  //게임종료
+        }
+    }
+    System.out.println("다시 게임 하시겠습니까? - 재시작(1)/종료(0):");  //게임 재시작
+    int replay = sc.nextInt();  //리플레이 변수를 생성하여 사용자 입력
+    if(replay==0){  //리플레이가 0이라면
+        System.out.println("게임 종료 - 아무키나 눌러 주세요.");
+        System.exit(0);  //게임 종료와 함수 종료
+    }
+    else if(replay==1){  //리플레이가 1이라면
+        strike=0;  //스트라이크 0으로 초기화
+        ball=0;  //볼 0으로 초기화
+        count=1;  //카운트 1로 초기화
+    }  //게임 다시 반복
+ }
+
+
+    }
+
+
+}
